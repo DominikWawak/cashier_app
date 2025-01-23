@@ -31,10 +31,9 @@ jobs:
 
     - name: Build and Push Docker Image
       uses: docker/build-push-action@v6
-      working-directory: ./cashreg_python
       with:
-        context: .                         
-        file: Dockerfile                 
+        context: ./cashreg_python       
+        file: ./cashreg_python/Dockerfile                 
         push: true                         
         tags: |
           ${{ secrets.DOCKER_USERNAME }}/${{ env.repo }}:${{ env.branch }}
