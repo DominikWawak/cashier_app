@@ -5,7 +5,6 @@ from sqlalchemy.exc import SQLAlchemyError
 
 
 
-## Repository layer will handle database transactions.
 
 def json_message(value):
 	json_a = {"message": value}

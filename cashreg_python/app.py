@@ -1,7 +1,6 @@
 from flask import (Flask, request, jsonify)
 from config import Config
-
-# import awsgi
+import awsgi
 
 
 app = Flask(__name__)
@@ -40,11 +39,8 @@ def buy_products():
 
 
 
-# TODO Future
-# def lambda_handler(event, context):
-#     return awsgi.response(app, event, context, base64_content_types={"image/png"})
-
-
+def handler(event, context):
+    return awsgi.response(app, event, context)
 
 if __name__ == '__main__':
     app.run()

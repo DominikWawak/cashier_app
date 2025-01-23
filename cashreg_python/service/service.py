@@ -29,6 +29,9 @@ class ProductService():
         
         for product_code, count in valid_products.items():
             response,status = ProductRepository.getProduct(product_code)
+            if status != 200:
+                return {"status": "error", "message": "Failed to fetch products"}, status
+
             if product_code == ProductService.GREENTEA_CODE:
                 valid_products[product_code] = math.ceil(count/2)
             
@@ -41,6 +44,6 @@ class ProductService():
             total_price += float(response['product']['product_price']) * valid_products[product_code]
 
          
-        return str(total_price)
+        return {"status": "success", "total_price": total_price}, 200
 
 	
