@@ -1,6 +1,5 @@
 from flask import (Flask, request, jsonify)
 from config import Config
-import awsgi
 
 
 app = Flask(__name__)
@@ -35,12 +34,6 @@ def buy_products():
     product_codes = request.args.get('product_codes')
     return ProductService.buyProducts(product_codes)
 
-
-
-
-
-def handler(event, context):
-    return awsgi.response(app, event, context)
 
 if __name__ == '__main__':
     app.run()
