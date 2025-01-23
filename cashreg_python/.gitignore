@@ -36,7 +36,6 @@ ehthumbs.db
 *.swp
 
 # Flask config files
-config.py
 *.sqlite3
 
 # Jupyter Notebooks

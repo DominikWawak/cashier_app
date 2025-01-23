@@ -1,0 +1,6 @@
+aws-wsgi
+flask
+mysql-connector-python
+pytest
+sqlalchemy-utils
+flask-sqlalchemy

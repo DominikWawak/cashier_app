@@ -1,7 +1,6 @@
 from flask import (Flask, request, jsonify)
 from config import Config
-
-# import awsgi
+import awsgi
 
 
 app = Flask(__name__)
@@ -17,25 +16,31 @@ db.init_app(app)
 from service.service import ProductService
 ProductService = ProductService()
 
-@app.route('/', methods=['GET'])
+@app.route('/product', methods=['GET'])
 def index():
-    return jsonify(status=200, message='Hello World!')
+    return ProductService.getProducts()
 
 
 @app.route('/product', methods=['POST'])
 def add_product():
     data = request.get_json()
-    print("recieved",data)
     return ProductService.addProduct(data)
 
+@app.route('/product/<product_code>', methods=['Get'])
+def get_product(product_code):
+    return ProductService.getProduct(product_code)
+
+@app.route('/products/buy', methods=['GET'])
+def buy_products():
+    product_codes = request.args.get('product_codes')
+    return ProductService.buyProducts(product_codes)
 
 
 
-# TODO Future
-# def lambda_handler(event, context):
-#     return awsgi.response(app, event, context, base64_content_types={"image/png"})
 
 
+def handler(event, context):
+    return awsgi.response(app, event, context)
 
 if __name__ == '__main__':
     app.run()
