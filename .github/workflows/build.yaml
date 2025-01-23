@@ -46,3 +46,7 @@ jobs:
         tags: |
           dominikwawak/cashier_app:${{ env.branch }}
           dominikwawak/cashier_app:latest
+        build-args: |
+          DB_USERNAME=${{ secrets.DB_USERNAME }}
+          DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+          MYSQL_DB_URL=${{ secrets.MYSQL_DB_URL }}
