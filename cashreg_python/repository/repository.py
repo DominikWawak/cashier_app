@@ -36,4 +36,31 @@ class ProductRepository:
 
         finally:
             db.session.close()
+            
+    def getProducts():
+        try:
+            products = Product.query.all()
+            products = [product.to_dict() for product in products]
+            return {"status": "success", "products": products}, 200
+
+        except SQLAlchemyError as e:
+            db.session.rollback()
+            print(f"Error adding product: {e}")
+            return {"status": "error", "message": "Failed to get products, please try again"}, 500
+
+        finally:
+            db.session.close()
+            
+    def getProduct(product_code):
+        try:
+            product = Product.query.filter_by(product_code=product_code).first()
+            return {"status": "success", "product": product.to_dict()}, 200
+
+        except SQLAlchemyError as e:
+            db.session.rollback()
+            print(f"Error adding product: {e}")
+            return {"status": "error", "message": "Failed to get product, please try again"}, 500
+
+        finally:
+            db.session.close()
 	
