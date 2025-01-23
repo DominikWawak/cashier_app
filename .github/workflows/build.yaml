@@ -19,7 +19,7 @@ jobs:
         sanitized_branch=$(echo "${{ github.head_ref }}" | tr '/' '-')
         repo=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
         echo "branch=$sanitized_branch" >> $GITHUB_ENV
-        echo "repo=${{ github.repository }}" >> $GITHUB_ENV
+        echo "repo=$repo" >> $GITHUB_ENV
 
     - name: Log in to Docker Hub
       uses: docker/login-action@v3
