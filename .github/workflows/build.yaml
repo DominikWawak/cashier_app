@@ -2,6 +2,9 @@ name: Build and Push Docker Image
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+  push:
+    branches:
+      - main
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -37,5 +40,5 @@ jobs:
         file: ./cashreg_python/Dockerfile                 
         push: true                         
         tags: |
-          ${{ secrets.DOCKER_USERNAME }}/${{ env.repo }}:${{ env.branch }}
-          ${{ secrets.DOCKER_USERNAME }}/${{ env.repo }}:latest
+          dominikwawak/${{ env.repo }}:${{ env.branch }}
+          dominikwawak/${{ env.repo }}:latest
