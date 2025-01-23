@@ -40,5 +40,5 @@ jobs:
         file: ./cashreg_python/Dockerfile                 
         push: true                         
         tags: |
-          dominikwawak/${{ env.repo }}:${{ env.branch }}
-          dominikwawak/${{ env.repo }}:latest
+          dominikwawak/cashier_app:${{ env.branch }}
+          dominikwawak/cashier_app:latest
